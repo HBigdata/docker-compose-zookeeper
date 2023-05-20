@@ -1,0 +1,88 @@
+version: '3'
+services:
+  zookeeper-node1:
+    image: registry.cn-hangzhou.aliyuncs.com/bigdata_cloudnative/zookeeper:3.8.1
+    user: "hadoop:hadoop"
+    container_name: zookeeper-node1
+    hostname: zookeeper-node1
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - privileged=true
+    env_file:
+      - .env
+    volumes:
+      - ./conf/zoo.cfg:${ZOOKEEPER_HOME}/conf/zoo.cfg
+      - ./data/zookeeper-node1/data/myid:${ZOOKEEPER_HOME}/data/myid
+    ports:
+      - "${ZOOKEEPER_NODE1_SERVER_PORT}:2181"
+    expose:
+      - 2888
+      - 3888
+    command: ["sh","-c","/opt/apache/bootstrap.sh"]
+    networks:
+      - hadoop-network
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tnlp|grep :2181 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  zookeeper-node2:
+    image: registry.cn-hangzhou.aliyuncs.com/bigdata_cloudnative/zookeeper:3.8.1
+    user: "hadoop:hadoop"
+    container_name: zookeeper-node2
+    hostname: zookeeper-node2
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - privileged=true
+    env_file:
+      - .env
+    volumes:
+      - ./conf/zoo.cfg:${ZOOKEEPER_HOME}/conf/zoo.cfg
+      - ./data/zookeeper-node2/data/myid:${ZOOKEEPER_HOME}/data/myid
+    ports:
+      - "${ZOOKEEPER_NODE2_SERVER_PORT}:2181"
+    expose:
+      - 2888
+      - 3888
+    command: ["sh","-c","/opt/apache/bootstrap.sh"]
+    networks:
+      - hadoop-network
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tnlp|grep :2181 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+  zookeeper-node3:
+    image: registry.cn-hangzhou.aliyuncs.com/bigdata_cloudnative/zookeeper:3.8.1
+    user: "hadoop:hadoop"
+    container_name: zookeeper-node3
+    hostname: zookeeper-node3
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - privileged=true
+    env_file:
+      - .env
+    volumes:
+      - ./conf/zoo.cfg:${ZOOKEEPER_HOME}/conf/zoo.cfg
+      - ./data/zookeeper-node3/data/myid:${ZOOKEEPER_HOME}/data/myid
+    ports:
+      - "${ZOOKEEPER_NODE3_SERVER_PORT}:2181"
+    expose:
+      - 2888
+      - 3888
+    command: ["sh","-c","/opt/apache/bootstrap.sh"]
+    networks:
+      - hadoop-network
+    healthcheck:
+      test: ["CMD-SHELL", "netstat -tnlp|grep :2181 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+# 连接外部网络
+networks:
+  hadoop-network:
+    external: true
