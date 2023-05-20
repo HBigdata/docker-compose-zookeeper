@@ -1,4 +1,3 @@
-@[TOC]
 ## 一、概述
 Zookeeper是一个开源的分布式协调服务中间件，它提供了一种分布式数据管理服务，能够实现分布式锁、命名服务、配置管理、集群管理等功能，从而帮助用户构建高可用、高性能的分布式系统。以下是Zookeeper的一些主要特点和功能：
 
@@ -14,8 +13,7 @@ Zookeeper是一个开源的分布式协调服务中间件，它提供了一种�
 
 总之，Zookeeper是一个可靠、高效、易用的分布式协调服务中间件。它具有强大的分布式协调和管理功能，可以帮助用户轻松构建高可用、高性能的分布式系统。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/6dbb7d2d6aba4c9c9bf20a8e58a1f67a.png)
-想了解更多关于zookeeper的知识点可以参考我之前的文章：[分布式开源协调服务——Zookeeper](https://blog.csdn.net/qq_35745940/article/details/124810252)
+![输入图片说明](images/1image.png)
 
 ## 二、前期准备
 ### 1）部署 docker
@@ -273,7 +271,7 @@ docker-compose -f docker-compose.yaml up -d
 # 查看
 docker-compose -f docker-compose.yaml ps
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/3cc0dd1290d54d8e95a0cd0754cb3af7.png)
+![输入图片说明](images/2image.png)
 ## 五、简单测试验证
 
 ```bash
@@ -287,7 +285,7 @@ exit
 docker exec -it zookeeper-node3 bash
 ${ZOOKEEPER_HOME}/bin/zkServer.sh status
 ```
-![在这里插入图片描述](https://img-blog.csdnimg.cn/ef8eba4ccb65430c88a93e659f115c72.png)
+![输入图片说明](images/3image.png)
 ## 六、常用的 zookeeper 客户端命令
 在Zookeeper中，节点类型分为四种：**持久节点**、**临时节点**、**有序节点**和**有序临时节点**。
 
